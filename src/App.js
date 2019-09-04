@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const App = () => <div>coming soon</div>;
+import Playground from './components/Playground'
 
-export default App;
+const App = () => <Playground />
+
+export default App
