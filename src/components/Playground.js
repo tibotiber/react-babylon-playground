@@ -3,7 +3,6 @@ import { Vector3, Color3 } from '@babylonjs/core/Maths/math'
 import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera'
 import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight'
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial'
-import { PBRMetallicRoughnessMaterial } from '@babylonjs/core/Materials/PBR/pbrMetallicRoughnessMaterial'
 import { LinesBuilder } from '@babylonjs/core/Meshes/Builders/linesBuilder'
 import { PlaneBuilder } from '@babylonjs/core/Meshes/Builders/planeBuilder'
 import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder'
@@ -59,21 +58,15 @@ const Playground = () => {
   }
 
   const createStaticMesh = ({ scene }) => {
-    // land
-    const landMaterial = new PBRMetallicRoughnessMaterial('landMaterial', scene)
-    landMaterial.baseColor = new Color3(0.811, 0.749, 0.529)
-    landMaterial.metallic = 0
-    landMaterial.roughness = 1.0
+    const defaultMaterial = new StandardMaterial('default-material', scene)
+    defaultMaterial.diffuseColor = new Color3(1, 1, 1)
     const land = PlaneBuilder.CreatePlane(
       'land',
-      { size: 1000, sideOrientation: Mesh.FRONTSIDE },
+      { size: 5, sideOrientation: Mesh.DOUBLESIDE },
       scene
     )
     land.rotation = new Vector3(Math.PI / 2, 0, 0)
-    land.material = landMaterial
-    // meshes
-    const defaultMaterial = new StandardMaterial('default-material', scene)
-    defaultMaterial.diffuseColor = new Color3(1, 1, 1)
+    land.material = defaultMaterial
     const sphere = SphereBuilder.CreateSphere(
       'sphere',
       { diameter: 2, segments: 16 },
