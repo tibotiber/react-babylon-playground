@@ -1,0 +1,13 @@
+{
+  "prettier.eslintIntegration": false,
+  "editor.formatOnSave": false,
+  "emeraldwalk.runonsave": {
+    "comment": "because of issue with eslint 6 and vscode-prettier",
+    "commands": [
+      {
+        "match": "\\.js$",
+        "cmd": "yarn prettier-eslint --write ${file}"
+      }
+    ]
+  }
+}
